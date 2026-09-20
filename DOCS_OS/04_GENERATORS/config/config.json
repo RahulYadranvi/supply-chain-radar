@@ -1,0 +1,11 @@
+{
+  "project_name": "Supply Chain Radar",
+  "docs_version": "0.3.0-alpha",
+  "default_theme": "apple_dark",
+  "output_directory": "DOCS_OS/05_EXPORTS/html",
+  "author": "Rahul Yadranvi",
+  "company": "Supply Chain Radar",
+  "enable_toc": true,
+  "enable_progress_bar": true,
+  "enable_dark_mode": true
+}
