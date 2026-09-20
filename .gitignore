@@ -1,0 +1,47 @@
+# =========================
+# SUPPLY CHAIN RADAR
+# Git Ignore Rules
+# =========================
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# VS Code
+.vscode/settings.json
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Generated Documentation (never commit exports)
+DOCS_OS/05_EXPORTS/html/*
+DOCS_OS/05_EXPORTS/pdf/*
+DOCS_OS/05_EXPORTS/png/*
+DOCS_OS/05_EXPORTS/svg/*
+DOCS_OS/05_EXPORTS/markdown/*
+
+# Temporary files
+*.tmp
+*.bak
