@@ -1,0 +1,39 @@
+{
+  "heading": {
+    "family": "Inter",
+    "weight": 700,
+    "line_height": 1.2
+  },
+
+  "body": {
+    "family": "Inter",
+    "weight": 400,
+    "line_height": 1.8
+  },
+
+  "mono": {
+    "family": "JetBrains Mono",
+    "weight": 500
+  },
+
+  "scale": {
+    "h1": "48px",
+    "h2": "36px",
+    "h3": "28px",
+    "h4": "22px",
+    "body": "17px",
+    "small": "14px",
+    "caption": "12px",
+    "code": "15px"
+  },
+
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 32,
+    "2xl": 48,
+    "3xl": 64
+  }
+}

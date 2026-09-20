@@ -1,0 +1,47 @@
+{
+  "theme": "apple_dark",
+
+  "background": {
+    "primary": "#020617",
+    "secondary": "#0B1220",
+    "tertiary": "#111827"
+  },
+
+  "surface": {
+    "primary": "#0F172A",
+    "secondary": "#1E293B",
+    "elevated": "#1F2937",
+    "glass": "rgba(255,255,255,0.04)"
+  },
+
+  "border": {
+    "primary": "#243244",
+    "secondary": "#334155"
+  },
+
+  "text": {
+    "primary": "#F8FAFC",
+    "secondary": "#CBD5E1",
+    "muted": "#94A3B8",
+    "disabled": "#64748B"
+  },
+
+  "accent": {
+    "blue": "#3B82F6",
+    "cyan": "#06B6D4",
+    "purple": "#8B5CF6"
+  },
+
+  "status": {
+    "success": "#22C55E",
+    "warning": "#F59E0B",
+    "danger": "#EF4444",
+    "info": "#38BDF8"
+  },
+
+  "table": {
+    "header": "#172554",
+    "row": "#111827",
+    "row_alt": "#0F172A"
+  }
+}
