@@ -4,12 +4,21 @@
 
 ## Startup Status
 
-**Version:** `0.1.0-foundation`
+**Version:** `0.4.0-alpha.1`
 
-Current Sprint:
+### Current Sprint
 
-- Sprint 0 — Company Infrastructure
-- Documentation Operating System (DOCS_OS)
+- Sprint 1 — DOCS_OS Engineering
+- PROJECT_002 Documentation Style Guide Approved
+- Production Builder (In Progress)
+
+### Current Milestone
+
+- PROJECT_000 ✅
+- PROJECT_001 ✅
+- PROJECT_002 ✅
+- DOCS_OS Theme Engine ✅
+- DOCS_OS Builder 🚧
 
 ---
 

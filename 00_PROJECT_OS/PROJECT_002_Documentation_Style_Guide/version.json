@@ -1,0 +1,11 @@
+{
+  "document_id": "PROJECT_002",
+  "title": "Documentation Style Guide",
+  "version": "1.0.0",
+  "status": "Approved",
+  "owner": "Rahul Yadranvi",
+  "department": "00_PROJECT_OS",
+  "created": "2026-09-20",
+  "last_updated": "2026-09-20",
+  "generator": "DOCS_OS v0.3.1-alpha"
+}
