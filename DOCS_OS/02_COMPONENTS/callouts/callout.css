@@ -1,40 +1,41 @@
 /* ==========================================================
-   DOCS_OS — Apple Charcoal Callouts v4
-   ========================================================== */
+   DOCS_OS — Premium Callouts v4.1
+   Apple Charcoal • Linear • Minimal
+========================================================== */
 
 .callout{
-    position: relative;
+    position:relative;
+    margin:18px 0;
+    padding:16px 20px 16px 22px;
 
-    margin: 10px 0;
-    padding: 14px 18px 14px 20px;
+    background:rgba(255,255,255,.015);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:18px;
 
-    background: rgba(255,255,255,.018);
-    border: 1px solid rgba(255,255,255,.03);
-    border-radius: 16px;
+    overflow:hidden;
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    transition: all .25s ease;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
 }
 
 .callout:hover{
-    background: rgba(255,255,255,.028);
-    border-color: rgba(255,255,255,.05);
-    transform: translateY(-1px);
+    background:rgba(255,255,255,.03);
+    border-color:rgba(255,255,255,.08);
 }
 
-/* Accent strip */
+/* Apple left accent */
 
 .callout::before{
     content:"";
     position:absolute;
-
     left:0;
-    top:12px;
-    bottom:12px;
-
-    width:2px;
+    top:14px;
+    bottom:14px;
+    width:3px;
     border-radius:999px;
 }
 
@@ -44,14 +45,12 @@
     display:flex;
     align-items:center;
     gap:10px;
-
     margin-bottom:8px;
 }
 
 .callout-icon{
     width:22px;
     height:22px;
-
     display:flex;
     align-items:center;
     justify-content:center;
@@ -61,44 +60,79 @@
     font-size:12px;
     font-weight:700;
 
-    background:rgba(255,255,255,.035);
+    background:rgba(255,255,255,.04);
 }
 
 .callout-title{
-    font-size:11px;
+    font-size:10px;
     font-weight:700;
-
-    letter-spacing:.18em;
+    letter-spacing:.22em;
     text-transform:uppercase;
-
-    color:rgba(255,255,255,.55);
+    color:rgba(255,255,255,.48);
 }
 
 .callout-body{
-    margin-left:32px;
+    padding-left:32px;
 
-    color:rgba(255,255,255,.88);
+    font-size:16px;
+    font-weight:400;
+    line-height:1.7;
 
-    font-size:15px;
-    line-height:1.6;
+    color:rgba(255,255,255,.92);
 }
 
 /* INFO */
 
-.callout.info::before{background:#5C84FF;}
-.callout.info .callout-icon{color:#8EB0FF;}
+.callout.info::before{
+    background:#4B82FF;
+}
+
+.callout.info .callout-icon{
+    color:#74A0FF;
+}
 
 /* SUCCESS */
 
-.callout.success::before{background:#34D17B;}
-.callout.success .callout-icon{color:#65E79A;}
+.callout.success::before{
+    background:#33D17A;
+}
+
+.callout.success .callout-icon{
+    color:#4BE38B;
+}
 
 /* WARNING */
 
-.callout.warning::before{background:#E8B14B;}
-.callout.warning .callout-icon{color:#FFD47A;}
+.callout.warning::before{
+    background:#F4B942;
+}
+
+.callout.warning .callout-icon{
+    color:#FFD36C;
+}
 
 /* DANGER */
 
-.callout.danger::before{background:#FF5A6E;}
-.callout.danger .callout-icon{color:#FF92A0;}
+.callout.danger::before{
+    background:#FF5D73;
+}
+
+.callout.danger .callout-icon{
+    color:#FF8092;
+}
+
+.callout.info::before{
+    box-shadow:0 0 12px rgba(75,130,255,.35);
+}
+
+.callout.success::before{
+    box-shadow:0 0 12px rgba(51,209,122,.30);
+}
+
+.callout.warning::before{
+    box-shadow:0 0 12px rgba(244,185,66,.28);
+}
+
+.callout.danger::before{
+    box-shadow:0 0 12px rgba(255,93,115,.28);
+}
