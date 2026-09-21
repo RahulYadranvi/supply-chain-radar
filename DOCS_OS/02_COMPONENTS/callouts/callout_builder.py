@@ -4,31 +4,36 @@ ICONS = {
     "INFO": "i",
     "SUCCESS": "✓",
     "WARNING": "!",
-    "DANGER": "−"
+    "DANGER": "−",
 }
 
-
 def replace_callouts(html: str) -> str:
+    """
+    Converts every blockquote containing
+    [INFO] [WARNING] [SUCCESS] [DANGER]
+    into an individual callout card.
+    """
+
     pattern = re.compile(
-        r'<blockquote>\s*<p>\[(INFO|SUCCESS|WARNING|DANGER)\]\s*(.*?)</p>\s*</blockquote>',
-        re.DOTALL
+        r"<blockquote>\s*<p>\[(INFO|SUCCESS|WARNING|DANGER)\]\s*(.*?)</p>\s*</blockquote>",
+        re.DOTALL,
     )
 
     def repl(match):
-        callout_type = match.group(1)
+        kind = match.group(1)
         message = match.group(2).strip()
-        icon = ICONS[callout_type]
+        icon = ICONS[kind]
 
         return f"""
-<div class="callout {callout_type.lower()}">
-
+<div class="callout {kind.lower()}">
     <div class="callout-header">
-        <div class="callout-icon">{icon}</div>
-        <div class="callout-title">{callout_type}</div>
+        <span class="callout-icon">{icon}</span>
+        <span class="callout-title">{kind}</span>
     </div>
 
-    <div class="callout-body">{message}</div>
-
+    <div class="callout-body">
+        {message}
+    </div>
 </div>
 """
 

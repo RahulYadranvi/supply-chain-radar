@@ -1,40 +1,34 @@
 import re
 
-CALLOUTS = {
-    "INFO": ("info", "ℹ️"),
-    "WARNING": ("warning", "⚠️"),
-    "SUCCESS": ("success", "✔️"),
-    "DANGER": ("danger", "⛔"),
+ICONS = {
+    "INFO": "i",
+    "SUCCESS": "✓",
+    "WARNING": "!",
+    "DANGER": "−",
 }
 
+pattern = re.compile(
+    r"<blockquote>\s*<p>\[(INFO|SUCCESS|WARNING|DANGER)\]\s*(.*?)</p>\s*</blockquote>",
+    re.DOTALL,
+)
 
-def replace_callouts(html: str):
-    """
-    Converts every paragraph starting with [INFO], [WARNING], etc.
-    into an Apple-style callout card.
-    Works whether the markdown parser wraps them in one blockquote
-    or separate blockquotes.
-    """
+def replace_callouts(html: str) -> str:
 
-    # Remove blockquote wrappers first
-    html = html.replace("<blockquote>", "").replace("</blockquote>", "")
+    def repl(match):
+        kind = match.group(1)
+        message = match.group(2).strip()
 
-    for label, (css_class, icon) in CALLOUTS.items():
-        pattern = rf"<p>\s*\[{label}\]\s*(.*?)</p>"
+        return f"""
+<div class="callout {kind.lower()}">
+    <div class="callout-header">
+        <span class="callout-icon">{ICONS[kind]}</span>
+        <span class="callout-title">{kind}</span>
+    </div>
 
-        def repl(match):
-            text = match.group(1).strip()
-
-            return f"""
-<div class="callout {css_class}">
-    <div class="callout-icon">{icon}</div>
-    <div class="callout-content">
-        <h4>{label}</h4>
-        <p>{text}</p>
+    <div class="callout-body">
+        {message}
     </div>
 </div>
 """
 
-        html = re.sub(pattern, repl, html, flags=re.DOTALL)
-
-    return html
+    return pattern.sub(repl, html)

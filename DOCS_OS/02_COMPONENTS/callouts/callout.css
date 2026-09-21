@@ -1,38 +1,23 @@
-/* =====================================================
-   DOCS_OS — Apple Dark Premium Callouts
-===================================================== */
+/* DOCS_OS Premium Callouts */
 
 .callout{
-    position: relative;
-    margin: 14px 0;
-    padding: 16px 18px 16px 20px;
-
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-
-    transition: background .25s ease, border-color .25s ease;
-}
-
-.callout:hover{
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.08);
+    position:relative;
+    margin:18px 0;
+    padding:14px 18px;
+    background:#161616;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:14px;
 }
 
 .callout::before{
     content:"";
     position:absolute;
     left:0;
-    top:12px;
-    bottom:12px;
+    top:10px;
+    bottom:10px;
     width:3px;
-    border-radius:999px;
+    border-radius:20px;
 }
-
-/* Header */
 
 .callout-header{
     display:flex;
@@ -43,42 +28,36 @@
 
 .callout-icon{
     width:18px;
-    font-size:14px;
-    font-weight:600;
-    opacity:.9;
+    text-align:center;
+    font-size:13px;
+    font-weight:700;
 }
 
 .callout-title{
     font-size:11px;
-    font-weight:700;
-    letter-spacing:.14em;
+    letter-spacing:.18em;
     text-transform:uppercase;
     color:rgba(255,255,255,.55);
+    font-weight:700;
 }
 
 .callout-body{
     margin-left:28px;
     color:rgba(255,255,255,.82);
-    font-size:15px;
     line-height:1.6;
+    font-size:15px;
 }
 
-/* INFO */
+/* Accent colors */
 
-.callout.info::before{ background:#4F80FF; }
-.callout.info .callout-icon{ color:#7EA6FF; }
+.callout.info::before{background:#4F7FFF;}
+.callout.info .callout-icon{color:#7EA3FF;}
 
-/* SUCCESS */
+.callout.success::before{background:#33C86F;}
+.callout.success .callout-icon{color:#52E38B;}
 
-.callout.success::before{ background:#34C759; }
-.callout.success .callout-icon{ color:#5FE084; }
+.callout.warning::before{background:#D7A14B;}
+.callout.warning .callout-icon{color:#F3C166;}
 
-/* WARNING */
-
-.callout.warning::before{ background:#FFB547; }
-.callout.warning .callout-icon{ color:#FFD27D; }
-
-/* DANGER */
-
-.callout.danger::before{ background:#FF5A6B; }
-.callout.danger .callout-icon{ color:#FF8F9A; }
+.callout.danger::before{background:#E15B68;}
+.callout.danger .callout-icon{color:#FF7C8E;}
