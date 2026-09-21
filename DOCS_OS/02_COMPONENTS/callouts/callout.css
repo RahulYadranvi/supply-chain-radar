@@ -1,0 +1,84 @@
+/* =====================================================
+   DOCS_OS — Apple Dark Premium Callouts
+===================================================== */
+
+.callout{
+    position: relative;
+    margin: 14px 0;
+    padding: 16px 18px 16px 20px;
+
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    transition: background .25s ease, border-color .25s ease;
+}
+
+.callout:hover{
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.08);
+}
+
+.callout::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:12px;
+    bottom:12px;
+    width:3px;
+    border-radius:999px;
+}
+
+/* Header */
+
+.callout-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+}
+
+.callout-icon{
+    width:18px;
+    font-size:14px;
+    font-weight:600;
+    opacity:.9;
+}
+
+.callout-title{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.55);
+}
+
+.callout-body{
+    margin-left:28px;
+    color:rgba(255,255,255,.82);
+    font-size:15px;
+    line-height:1.6;
+}
+
+/* INFO */
+
+.callout.info::before{ background:#4F80FF; }
+.callout.info .callout-icon{ color:#7EA6FF; }
+
+/* SUCCESS */
+
+.callout.success::before{ background:#34C759; }
+.callout.success .callout-icon{ color:#5FE084; }
+
+/* WARNING */
+
+.callout.warning::before{ background:#FFB547; }
+.callout.warning .callout-icon{ color:#FFD27D; }
+
+/* DANGER */
+
+.callout.danger::before{ background:#FF5A6B; }
+.callout.danger .callout-icon{ color:#FF8F9A; }
