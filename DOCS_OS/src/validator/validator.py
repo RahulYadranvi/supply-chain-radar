@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-
 REQUIRED_KEYS = [
     "document_id",
     "title",
@@ -34,20 +33,10 @@ def validate_project(project_path: Path):
 def load_metadata(project_path: Path):
     version_file = project_path / "version.json"
 
-    data = json.loads(version_file.read_text(encoding="utf-8"))
+    metadata = json.loads(version_file.read_text(encoding="utf-8"))
 
     for key in REQUIRED_KEYS:
-        if key not in data:
+        if key not in metadata:
             raise ValueError(f"Missing metadata field: {key}")
 
-    return {
-        "Document ID": data["document_id"],
-        "Title": data["title"],
-        "Version": data["version"],
-        "Status": data["status"],
-        "Owner": data["owner"],
-        "Department": data["department"],
-        "Created": data["created"],
-        "Last Updated": data["last_updated"],
-        "Documentation Engine": data["generator"]
-    }
+    return metadata

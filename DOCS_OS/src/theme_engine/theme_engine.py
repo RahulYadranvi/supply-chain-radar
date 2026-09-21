@@ -1,40 +1,23 @@
 from pathlib import Path
-import json
+
+ROOT = Path(__file__).resolve().parents[2]
+
+THEMES = {
+    "apple_dark": ROOT / "01_THEMES" / "apple_dark" / "theme.css"
+}
 
 
-class ThemeEngine:
+def load_theme(theme_name="apple_dark"):
     """
-    DOCS_OS Theme Engine
-    Loads typography and color tokens.
+    Load CSS theme as a string.
     """
 
-    def __init__(self):
-        self.root = Path(__file__).resolve().parents[2]
-        self.theme_root = self.root / "01_THEMES"
+    if theme_name not in THEMES:
+        raise ValueError(f"Unknown theme: {theme_name}")
 
-        self.colors = self._load_json(
-            self.theme_root / "colors" / "colors.json"
-        )
+    css_file = THEMES[theme_name]
 
-        self.fonts = self._load_json(
-            self.theme_root / "typography" / "fonts.json"
-        )
+    if not css_file.exists():
+        raise FileNotFoundError(f"Theme not found: {css_file}")
 
-    def _load_json(self, file_path: Path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-
-    def token(self, group, name):
-        return self.colors[group][name]
-
-    def font(self, section):
-        return self.fonts[section]
-
-    def export(self):
-        return {
-            "colors": self.colors,
-            "fonts": self.fonts
-        }
-
-
-theme = ThemeEngine()
+    return css_file.read_text(encoding="utf-8")
