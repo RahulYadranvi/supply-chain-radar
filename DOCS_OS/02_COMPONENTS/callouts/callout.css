@@ -1,63 +1,104 @@
-/* DOCS_OS Premium Callouts */
+/* ==========================================================
+   DOCS_OS — Apple Charcoal Callouts v4
+   ========================================================== */
 
 .callout{
-    position:relative;
-    margin:18px 0;
-    padding:14px 18px;
-    background:#161616;
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:14px;
+    position: relative;
+
+    margin: 10px 0;
+    padding: 14px 18px 14px 20px;
+
+    background: rgba(255,255,255,.018);
+    border: 1px solid rgba(255,255,255,.03);
+    border-radius: 16px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transition: all .25s ease;
 }
+
+.callout:hover{
+    background: rgba(255,255,255,.028);
+    border-color: rgba(255,255,255,.05);
+    transform: translateY(-1px);
+}
+
+/* Accent strip */
 
 .callout::before{
     content:"";
     position:absolute;
+
     left:0;
-    top:10px;
-    bottom:10px;
-    width:3px;
-    border-radius:20px;
+    top:12px;
+    bottom:12px;
+
+    width:2px;
+    border-radius:999px;
 }
+
+/* Header */
 
 .callout-header{
     display:flex;
     align-items:center;
     gap:10px;
+
     margin-bottom:8px;
 }
 
 .callout-icon{
-    width:18px;
-    text-align:center;
-    font-size:13px;
+    width:22px;
+    height:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:999px;
+
+    font-size:12px;
     font-weight:700;
+
+    background:rgba(255,255,255,.035);
 }
 
 .callout-title{
     font-size:11px;
+    font-weight:700;
+
     letter-spacing:.18em;
     text-transform:uppercase;
+
     color:rgba(255,255,255,.55);
-    font-weight:700;
 }
 
 .callout-body{
-    margin-left:28px;
-    color:rgba(255,255,255,.82);
-    line-height:1.6;
+    margin-left:32px;
+
+    color:rgba(255,255,255,.88);
+
     font-size:15px;
+    line-height:1.6;
 }
 
-/* Accent colors */
+/* INFO */
 
-.callout.info::before{background:#4F7FFF;}
-.callout.info .callout-icon{color:#7EA3FF;}
+.callout.info::before{background:#5C84FF;}
+.callout.info .callout-icon{color:#8EB0FF;}
 
-.callout.success::before{background:#33C86F;}
-.callout.success .callout-icon{color:#52E38B;}
+/* SUCCESS */
 
-.callout.warning::before{background:#D7A14B;}
-.callout.warning .callout-icon{color:#F3C166;}
+.callout.success::before{background:#34D17B;}
+.callout.success .callout-icon{color:#65E79A;}
 
-.callout.danger::before{background:#E15B68;}
-.callout.danger .callout-icon{color:#FF7C8E;}
+/* WARNING */
+
+.callout.warning::before{background:#E8B14B;}
+.callout.warning .callout-icon{color:#FFD47A;}
+
+/* DANGER */
+
+.callout.danger::before{background:#FF5A6E;}
+.callout.danger .callout-icon{color:#FF92A0;}

@@ -1,34 +1,52 @@
 import re
 
 ICONS = {
-    "INFO": "i",
+    "INFO": "ⓘ",
     "SUCCESS": "✓",
-    "WARNING": "!",
-    "DANGER": "−",
+    "WARNING": "▲",
+    "DANGER": "●",
 }
 
-pattern = re.compile(
-    r"<blockquote>\s*<p>\[(INFO|SUCCESS|WARNING|DANGER)\]\s*(.*?)</p>\s*</blockquote>",
-    re.DOTALL,
-)
 
 def replace_callouts(html: str) -> str:
+    """
+    Convert markdown blockquotes into individual callout cards.
+    Works with Python-Markdown output, where consecutive '>' lines become
+    one <blockquote> with multiple <p> elements.
+    """
 
-    def repl(match):
-        kind = match.group(1)
-        message = match.group(2).strip()
+    blockquote_pattern = re.compile(
+        r"<blockquote>(.*?)</blockquote>",
+        re.DOTALL,
+    )
 
-        return f"""
+    paragraph_pattern = re.compile(
+        r"<p>\[(INFO|SUCCESS|WARNING|DANGER)\]\s*(.*?)</p>",
+        re.DOTALL,
+    )
+
+    def convert_blockquote(match):
+        block_content = match.group(1)
+
+        callouts = paragraph_pattern.findall(block_content)
+
+        # Normal blockquote → leave unchanged.
+        if not callouts:
+            return match.group(0)
+
+        html_cards = []
+
+        for kind, message in callouts:
+            html_cards.append(f"""
 <div class="callout {kind.lower()}">
     <div class="callout-header">
         <span class="callout-icon">{ICONS[kind]}</span>
         <span class="callout-title">{kind}</span>
     </div>
-
-    <div class="callout-body">
-        {message}
-    </div>
+    <div class="callout-body">{message.strip()}</div>
 </div>
-"""
+""")
 
-    return pattern.sub(repl, html)
+        return "\n".join(html_cards)
+
+    return blockquote_pattern.sub(convert_blockquote, html)
