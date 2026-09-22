@@ -8,7 +8,7 @@ from src.builder.codeblock_builder import replace_codeblocks
 ROOT = Path(__file__).resolve().parents[2]
 
 # ==========================================================
-# Load Component Assets
+# Load Components
 # ==========================================================
 
 SIDEBAR_CSS = (
@@ -37,18 +37,10 @@ CODEBLOCK_JS = (
 # ==========================================================
 
 def build_html(metadata, html_content):
-    """
-    DOCS_OS HTML Builder
-    Apple Charcoal v0.4
-    """
 
-    # Load theme
     theme = load_theme("apple_dark")
-
-    # Sidebar
     sidebar = build_sidebar(metadata["document_id"])
 
-    # Markdown components
     html_content = replace_callouts(html_content)
     html_content = replace_codeblocks(html_content)
 
@@ -96,34 +88,34 @@ def build_html(metadata, html_content):
 
         <h1>{metadata["title"]}</h1>
 
-        <p>
+        <p class="hero-subtitle">
             Official documentation standard for Supply Chain Radar.
         </p>
 
     </section>
 
     <!-- ====================================================== -->
-    <!-- METADATA -->
+    <!-- METADATA GRID -->
     <!-- ====================================================== -->
 
     <section class="metadata-card">
 
-        <div>
+        <div class="meta-item">
             <strong>Status</strong>
             <span>{metadata["status"]}</span>
         </div>
 
-        <div>
+        <div class="meta-item">
             <strong>Owner</strong>
             <span>{metadata["owner"]}</span>
         </div>
 
-        <div>
+        <div class="meta-item">
             <strong>Department</strong>
             <span>{metadata["department"]}</span>
         </div>
 
-        <div>
+        <div class="meta-item">
             <strong>Generator</strong>
             <span>{metadata["generator"]}</span>
         </div>
@@ -136,7 +128,7 @@ def build_html(metadata, html_content):
 
     <main class="document-content">
 
-{html_content}
+        {html_content}
 
     </main>
 
@@ -165,6 +157,5 @@ def build_html(metadata, html_content):
 </script>
 
 </body>
-
 </html>
 """

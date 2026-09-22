@@ -50,10 +50,11 @@ html{
     background:#18181B;
 }
 
+/* ---------- BODY ---------- */
+
 body{
 
-    background:
-        radial-gradient(circle at top,#202125 0%,#18181B 40%,#161618 100%);
+    margin:0;
 
     color:var(--text);
 
@@ -64,6 +65,23 @@ body{
     line-height:1.85;
 
     -webkit-font-smoothing:antialiased;
+
+    /* FIXED Premium Charcoal Background */
+
+    background:#18181B;
+
+    background-image:
+        radial-gradient(circle at top center,
+            #0000001f 0%,
+            #372f2f23 18%,
+            #4e715b22 42%,
+            #00000010 100%);
+
+    background-repeat:no-repeat;
+
+    background-size:100% 100vh;
+
+    background-attachment:fixed;
 
 }
 

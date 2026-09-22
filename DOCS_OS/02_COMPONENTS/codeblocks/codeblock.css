@@ -1,45 +1,44 @@
 /* ==========================================================
-   DOCS_OS Premium Code Blocks v3
-   Apple Charcoal Design System
-========================================================== */
+   DOCS_OS — Premium Apple Charcoal Code Blocks v3
+   ========================================================== */
+
+/* ---------- Main Container ---------- */
 
 .codeblock{
 
-    margin:34px 0;
+    margin:42px 0;
 
-    background:#16171B;
+    background:#121317;
 
-    border:1px solid rgba(255,255,255,.06);
+    border:2px solid rgba(255,255,255,.10);
 
     border-radius:22px;
 
     overflow:hidden;
 
     box-shadow:
-        inset 0 1px rgba(255,255,255,.02),
-        0 12px 30px rgba(0,0,0,.22);
+        inset 0 1px rgba(255,255,255,.03),
+        0 16px 36px rgba(0,0,0,.30);
 
 }
 
-/* ==========================================================
-   Toolbar
-========================================================== */
+/* ---------- Toolbar ---------- */
 
 .codeblock-toolbar{
 
     display:flex;
-
+    align-items:center;
     justify-content:space-between;
 
-    align-items:center;
+    padding:16px 22px;
 
-    padding:14px 18px;
+    background:#1A1B20;
 
-    background:#1B1C20;
-
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.08);
 
 }
+
+/* ---------- Language Label ---------- */
 
 .codeblock-language{
 
@@ -51,85 +50,70 @@
 
     text-transform:uppercase;
 
-    color:#9198A5;
+    color:#A5B4D8;
 
 }
 
-/* ==========================================================
-   Copy Button
-========================================================== */
+/* ---------- Copy Button ---------- */
 
 .copy-button{
 
-    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    outline:none;
+    padding:8px 14px;
 
-    background:transparent;
+    background:rgba(255,255,255,.03);
 
-    color:#9CA3AF;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    font-family:"Inter",sans-serif;
-
-    padding:8px 12px;
+    border:1px solid rgba(255,255,255,.10);
 
     border-radius:10px;
 
+    color:#C7CEDD;
+
+    font-size:13px;
+    font-weight:600;
+
     cursor:pointer;
 
-    transition:all .18s ease;
+    transition:all .22s ease;
 
 }
 
 .copy-button:hover{
 
-    background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.08);
+
+    border-color:rgba(255,255,255,.18);
 
     color:#FFFFFF;
 
 }
 
-.copy-button.copied{
-
-    background:rgba(34,197,94,.12);
-
-    color:#4ADE80;
-
-}
-
-/* ==========================================================
-   Code Container
-========================================================== */
+/* ---------- Code Area ---------- */
 
 .codeblock pre{
 
-    margin:0 !important;
+    margin:0;
 
-    padding:24px !important;
+    padding:26px 28px;
 
-    background:#0F1013 !important;
-
-    border:none !important;
-
-    border-radius:0 !important;
+    background:#0B0C0F;
 
     overflow-x:auto;
 
+    white-space:pre;
+
 }
 
-/* ==========================================================
-   Code Text
-========================================================== */
+/* ---------- Code ---------- */
 
 .codeblock pre code{
 
     display:block;
 
-    background:none !important;
+    background:none;
 
     color:#ECEDEF;
 
@@ -151,9 +135,7 @@
 
 }
 
-/* ==========================================================
-   Scrollbar
-========================================================== */
+/* ---------- Scrollbar ---------- */
 
 .codeblock pre::-webkit-scrollbar{
 
@@ -163,13 +145,13 @@
 
 .codeblock pre::-webkit-scrollbar-track{
 
-    background:transparent;
+    background:#101114;
 
 }
 
 .codeblock pre::-webkit-scrollbar-thumb{
 
-    background:rgba(255,255,255,.12);
+    background:rgba(255,255,255,.14);
 
     border-radius:999px;
 
@@ -177,6 +159,38 @@
 
 .codeblock pre::-webkit-scrollbar-thumb:hover{
 
-    background:rgba(255,255,255,.22);
+    background:rgba(255,255,255,.24);
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:900px){
+
+    .codeblock{
+
+        margin:32px 0;
+
+        border-radius:18px;
+
+    }
+
+    .codeblock-toolbar{
+
+        padding:14px 18px;
+
+    }
+
+    .codeblock pre{
+
+        padding:20px;
+
+    }
+
+    .codeblock pre code{
+
+        font-size:14px;
+
+    }
 
 }

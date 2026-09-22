@@ -1,75 +1,73 @@
 /* ==========================================================
-   DOCS_OS Premium Code Blocks v3
-   Copy Button Engine
+   DOCS_OS Apple Code Block Engine v4
+   Clipboard + Copy Button
 ========================================================== */
 
-(function () {
+function copyCode(button){
 
-    function initCodeBlocks() {
+    const block = button.closest(".codeblock");
 
-        const blocks = document.querySelectorAll(".codeblock");
+    if(!block) return;
 
-        blocks.forEach((block) => {
+    const code = block.querySelector("pre code");
 
-            const button = block.querySelector(".copy-button");
-            const code = block.querySelector("pre code");
+    if(!code) return;
 
-            if (!button || !code) return;
+    const text = code.innerText;
 
-            button.addEventListener("click", async () => {
+    navigator.clipboard.writeText(text).then(() => {
 
-                const text = code.textContent;
+        const original = button.textContent;
 
-                try {
+        button.textContent = "Copied ✓";
 
-                    await navigator.clipboard.writeText(text);
+        button.classList.add("copied");
 
-                    button.classList.add("copied");
-                    button.textContent = "Copied ✓";
+        setTimeout(() => {
+            button.textContent = original;
+            button.classList.remove("copied");
+        },1800);
 
-                    setTimeout(() => {
-                        button.classList.remove("copied");
-                        button.textContent = "Copy";
-                    }, 1800);
+    }).catch(() => {
 
-                } catch (err) {
+        // Fallback for older browsers.
+        const textarea = document.createElement("textarea");
 
-                    // Fallback for older browsers
-                    const textarea = document.createElement("textarea");
+        textarea.value = text;
 
-                    textarea.value = text;
-                    textarea.style.position = "fixed";
-                    textarea.style.opacity = "0";
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
 
-                    document.body.appendChild(textarea);
+        document.body.appendChild(textarea);
 
-                    textarea.focus();
-                    textarea.select();
+        textarea.select();
+        document.execCommand("copy");
 
-                    document.execCommand("copy");
+        document.body.removeChild(textarea);
 
-                    document.body.removeChild(textarea);
+        const original = button.textContent;
 
-                    button.classList.add("copied");
-                    button.textContent = "Copied ✓";
+        button.textContent = "Copied ✓";
 
-                    setTimeout(() => {
-                        button.classList.remove("copied");
-                        button.textContent = "Copy";
-                    }, 1800);
+        button.classList.add("copied");
 
-                }
+        setTimeout(() => {
+            button.textContent = original;
+            button.classList.remove("copied");
+        },1800);
 
-            });
+    });
 
-        });
+}
 
-    }
+/* Attach listeners after page loads */
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initCodeBlocks);
-    } else {
-        initCodeBlocks();
-    }
+document.addEventListener("DOMContentLoaded", () => {
 
-})();
+    document.querySelectorAll(".copy-button").forEach((button) => {
+
+        button.addEventListener("click", () => copyCode(button));
+
+    });
+
+});
