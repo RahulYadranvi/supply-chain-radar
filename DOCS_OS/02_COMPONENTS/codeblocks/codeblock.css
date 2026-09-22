@@ -1,95 +1,182 @@
 /* ==========================================================
-   DOCS_OS Code Blocks v1
+   DOCS_OS Premium Code Blocks v3
+   Apple Charcoal Design System
 ========================================================== */
 
 .codeblock{
-    margin:22px 0;
 
-    background:#111214;
+    margin:34px 0;
+
+    background:#16171B;
+
     border:1px solid rgba(255,255,255,.06);
-    border-radius:18px;
 
-    overflow:hidden;          /* keeps children clipped */
+    border-radius:22px;
+
+    overflow:hidden;
 
     box-shadow:
-        inset 0 1px rgba(255,255,255,.03),
-        0 8px 30px rgba(0,0,0,.35);
+        inset 0 1px rgba(255,255,255,.02),
+        0 12px 30px rgba(0,0,0,.22);
+
 }
 
+/* ==========================================================
+   Toolbar
+========================================================== */
+
 .codeblock-toolbar{
+
     display:flex;
-    align-items:center;
+
     justify-content:space-between;
 
-    padding:9px 16px;
+    align-items:center;
 
-    background:#17181B;
+    padding:14px 18px;
+
+    background:#1B1C20;
+
     border-bottom:1px solid rgba(255,255,255,.05);
+
 }
 
 .codeblock-language{
-    font-size:10px;
+
+    font-size:11px;
+
     font-weight:700;
+
     letter-spacing:.22em;
+
     text-transform:uppercase;
-    color:rgba(255,255,255,.42);
+
+    color:#9198A5;
+
 }
 
-.copy-button{
-    border:none;
-    background:none;
-    padding:4px 8px;
+/* ==========================================================
+   Copy Button
+========================================================== */
 
-    color:rgba(255,255,255,.42);
-    font-size:12px;
-    font-weight:500;
-    border-radius:8px;
+.copy-button{
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#9CA3AF;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    font-family:"Inter",sans-serif;
+
+    padding:8px 12px;
+
+    border-radius:10px;
 
     cursor:pointer;
-    transition:.2s ease;
+
+    transition:all .18s ease;
+
 }
 
 .copy-button:hover{
+
     background:rgba(255,255,255,.05);
+
     color:#FFFFFF;
+
 }
 
+.copy-button.copied{
+
+    background:rgba(34,197,94,.12);
+
+    color:#4ADE80;
+
+}
+
+/* ==========================================================
+   Code Container
+========================================================== */
 
 .codeblock pre{
-    margin:0;
-    padding:16px 18px;
+
+    margin:0 !important;
+
+    padding:24px !important;
+
+    background:#0F1013 !important;
+
+    border:none !important;
+
+    border-radius:0 !important;
 
     overflow-x:auto;
-    background:#111214;
+
 }
 
-.codeblock code{
+/* ==========================================================
+   Code Text
+========================================================== */
+
+.codeblock pre code{
+
+    display:block;
+
+    background:none !important;
+
     color:#ECEDEF;
 
-    font-size:14px;
-    font-weight:400;
-    line-height:1.65;
-
     font-family:
-        "SF Mono",
         "JetBrains Mono",
+        "SF Mono",
         Consolas,
         monospace;
+
+    font-size:15px;
+
+    line-height:1.9;
+
+    white-space:pre;
+
+    word-break:normal;
+
+    overflow-wrap:normal;
+
 }
 
+/* ==========================================================
+   Scrollbar
+========================================================== */
+
 .codeblock pre::-webkit-scrollbar{
+
     height:8px;
+
 }
 
 .codeblock pre::-webkit-scrollbar-track{
+
     background:transparent;
+
 }
 
 .codeblock pre::-webkit-scrollbar-thumb{
-    background:rgba(255,255,255,.10);
+
+    background:rgba(255,255,255,.12);
+
     border-radius:999px;
+
 }
 
 .codeblock pre::-webkit-scrollbar-thumb:hover{
-    background:rgba(255,255,255,.18);
+
+    background:rgba(255,255,255,.22);
+
 }

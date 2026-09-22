@@ -1,43 +1,53 @@
+"""
+==========================================================
+DOCS_OS Code Block Builder
+Version : v0.3.1-alpha
+Converts Markdown fenced code blocks into Apple-style blocks.
+==========================================================
+"""
+
+import html
 import re
 
-LANGS = [
-    "python",
-    "sql",
-    "json",
-    "yaml",
-    "bash",
-    "text",
-    "js",
-    "ts",
-    "tsx",
-]
 
-def replace_codeblocks(html: str) -> str:
+def replace_codeblocks(content: str) -> str:
+    """
+    Converts:
 
-    pattern = re.compile(
-        r'<pre><code class="language-(.*?)">(.*?)</code></pre>',
-        re.DOTALL,
-    )
+    ```python
+    print("Hello")
+    ```
 
-    def repl(match):
+    into:
 
-        lang = match.group(1).upper()
-        code = match.group(2)
+    <div class="codeblock">
+        ...
+    </div>
+    """
+
+    pattern = re.compile(r"```(\w+)?\n(.*?)```", re.DOTALL)
+
+    def render(match):
+        language = (match.group(1) or "TEXT").upper()
+        code = match.group(2).rstrip()
+
+        # Escape HTML characters so code displays correctly.
+        escaped_code = html.escape(code, quote=False)
 
         return f"""
 <div class="codeblock">
 
     <div class="codeblock-toolbar">
 
-        <div class="codeblock-language">{lang}</div>
+        <span class="codeblock-language">{language}</span>
 
         <button class="copy-button">Copy</button>
 
     </div>
 
-    <pre><code>{code}</code></pre>
+    <pre><code>{escaped_code}</code></pre>
 
 </div>
 """
 
-    return pattern.sub(repl, html)
+    return pattern.sub(render, content)

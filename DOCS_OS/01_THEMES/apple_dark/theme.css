@@ -1,536 +1,769 @@
 /* ==========================================================
-   DOCS_OS — Premium Charcoal Theme
-   Version: v0.3.1-alpha
-   Design Language: Apple × Linear × Arc × Anthropic
-   ========================================================== */
+   DOCS_OS — Apple Charcoal Theme v0.4
+   Premium Documentation Theme
+========================================================== */
 
-/* ---------- Google Fonts ---------- */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
-/* ---------- Design Tokens ---------- */
+/* ==========================================================
+   TOKENS
+========================================================== */
 
 :root{
 
-/* Backgrounds */
---bg:#18181B;
---bg-soft:#1F1F23;
---surface:#232326;
---surface-hover:#2C2C31;
---surface-elevated:#313136;
+    --bg:#18181B;
+    --surface:#1E1F24;
+    --surface-2:#15161A;
+    --surface-3:#111216;
 
-/* Borders */
---border:#3A3A40;
---border-soft:#2A2A30;
+    --text:#F5F5F3;
+    --text-secondary:#BFC4CD;
+    --text-muted:#8F96A3;
 
-/* Text */
---text:#F5F5F0;
---text-secondary:#D4D4D8;
---text-muted:#A1A1AA;
+    --border:rgba(255,255,255,.055);
+    --border-soft:rgba(255,255,255,.035);
 
-/* Accent */
---accent:#4F7CFF;
---accent-soft:#6C91FF;
+    --blue:#4F7CFF;
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
 
-/* Status */
---success:#22C55E;
---warning:#F59E0B;
---danger:#EF4444;
---info:#38BDF8;
+    --radius-xl:30px;
+    --radius-lg:22px;
+    --radius-md:18px;
 
-/* Shadows */
---shadow-lg:0 20px 60px rgba(0,0,0,.35);
---shadow-md:0 12px 40px rgba(0,0,0,.25);
-
-/* Radius */
---radius-xl:28px;
---radius-lg:20px;
---radius-md:14px;
-
-/* Width */
---page-width:1080px;
+    --page-width:1080px;
 
 }
 
-/* ---------- Reset ---------- */
+/* ==========================================================
+   RESET
+========================================================== */
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-background:var(--bg);
+    background:#18181B;
 }
 
 body{
 
-background:
-radial-gradient(circle at top,
-#232326 0%,
-#18181B 35%,
-#161618 100%);
+    background:
+        radial-gradient(circle at top,#202125 0%,#18181B 40%,#161618 100%);
 
-color:var(--text);
+    color:var(--text);
 
-font-family:"Inter",sans-serif;
+    font-family:"Inter",sans-serif;
 
-font-size:18px;
+    font-size:18px;
 
-line-height:1.9;
+    line-height:1.85;
 
--webkit-font-smoothing:antialiased;
+    -webkit-font-smoothing:antialiased;
 
 }
 
-/* ---------- Page Layout ---------- */
+/* ==========================================================
+   PAGE
+========================================================== */
 
 .page{
 
-max-width:var(--page-width);
+    max-width:980px;
 
-margin:auto;
+    margin:0 auto;
 
-padding:88px 72px 140px;
+    padding:72px 56px 120px;
 
 }
 
-/* ---------- Hero Card ---------- */
+/* ==========================================================
+   HERO
+========================================================== */
 
 .hero{
 
-background:linear-gradient(
-180deg,
-rgba(255,255,255,.04),
-rgba(255,255,255,.015));
+    padding:68px 60px;
 
-border:1px solid rgba(255,255,255,.06);
+    margin-bottom:58px;
 
-border-radius:32px;
+    border-radius:30px;
 
-padding:36px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.025),
+            rgba(255,255,255,.010)
+        );
 
-box-shadow:var(--shadow-lg);
+    border:1px solid rgba(255,255,255,.05);
 
-margin-bottom:64px;
-
-backdrop-filter:blur(18px);
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.03),
+        0 18px 40px rgba(0,0,0,.22);
 
 }
 
 .hero small{
 
-color:var(--text-muted);
+    display:inline-flex;
 
-letter-spacing:.08em;
+    align-items:center;
 
-text-transform:uppercase;
+    padding:8px 16px;
 
-font-weight:600;
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    background:rgba(255,255,255,.02);
+
+    color:#A8AFBB;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.16em;
+
+    text-transform:uppercase;
 
 }
 
 .hero h1{
 
-margin-top:16px;
+    margin-top:28px;
 
-font-size:56px;
+    margin-bottom:22px;
 
-font-weight:800;
+    font-size:72px;
 
-color:var(--text);
+    line-height:.94;
+
+    font-weight:800;
+
+    letter-spacing:-.055em;
+
+    color:#F5F5F3;
 
 }
 
 .hero p{
 
-margin-top:14px;
+    max-width:560px;
 
-color:var(--text-secondary);
+    color:#BFC4CD;
 
-font-size:19px;
+    font-size:20px;
+
+    line-height:1.65;
 
 }
 
-/* ---------- Headings ---------- */
+/* ==========================================================
+   METADATA CARD GRID
+========================================================== */
 
-h1,h2,h3,h4,h5{
+.metadata-card{
 
-font-weight:700;
+    display:grid;
 
-letter-spacing:-.03em;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 
-color:var(--text);
+    gap:18px;
+
+    margin:48px 0 64px;
+
+}
+
+.metadata-card div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:12px;
+
+    min-height:120px;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.018),
+            rgba(255,255,255,.010)
+        );
+
+    border:1px solid rgba(255,255,255,.055);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.02);
+
+}
+
+.metadata-card strong{
+
+    color:#8F96A3;
+
+    font-size:11px;
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+}
+
+.metadata-card span{
+
+    color:#F3F4F6;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    line-height:1.4;
+
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+
+h1,h2,h3,h4{
+
+    color:#F4F5F7;
+
+    letter-spacing:-.04em;
 
 }
 
 h1{
-font-size:56px;
-margin-top:56px;
-margin-bottom:20px;
+
+    font-size:58px;
+
+    margin:42px 0 20px;
+
 }
 
 h2{
-font-size:42px;
-margin-top:72px;
-margin-bottom:18px;
-padding-bottom:12px;
-border-bottom:1px solid var(--border-soft);
+
+    font-size:44px;
+
+    margin-top:76px;
+
+    margin-bottom:26px;
+
+    padding-bottom:18px;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
 }
 
 h3{
-font-size:30px;
-margin-top:56px;
-margin-bottom:14px;
+
+    font-size:30px;
+
+    margin-top:42px;
+
+    margin-bottom:18px;
+
 }
 
 h4{
-font-size:24px;
-margin-top:40px;
-margin-bottom:12px;
+
+    font-size:24px;
+
+    margin-top:36px;
+
+    margin-bottom:12px;
+
 }
 
 p{
 
-margin-top:16px;
+    color:#C4CAD4;
 
-color:var(--text-secondary);
+    max-width:72ch;
+
+    line-height:1.85;
+
+    margin-top:16px;
 
 }
 
-/* ---------- Links ---------- */
+/* ==========================================================
+   LINKS
+========================================================== */
 
 a{
 
-color:var(--accent-soft);
+    color:#82A6FF;
 
-text-decoration:none;
-
-font-weight:500;
+    text-decoration:none;
 
 }
 
 a:hover{
 
-color:white;
+    color:white;
 
 }
 
-/* ---------- Lists ---------- */
+/* ==========================================================
+   LISTS
+========================================================== */
 
 ul,ol{
 
-padding-left:28px;
+    padding-left:28px;
 
-margin-top:16px;
+    margin-top:18px;
 
 }
 
 li{
 
-margin:10px 0;
+    margin:10px 0;
 
-color:var(--text-secondary);
+    color:#C8CDD5;
 
 }
 
-/* ---------- Divider ---------- */
+/* ==========================================================
+   DIVIDER
+========================================================== */
 
 hr{
 
-border:none;
+    border:none;
 
-height:1px;
+    height:1px;
 
-background:var(--border-soft);
+    margin:72px 0;
 
-margin:64px 0;
+    background:rgba(255,255,255,.05);
 
 }
 
-/* ---------- Premium Cards ---------- */
+/* ==========================================================
+   CARDS
+========================================================== */
 
 .card{
 
-background:linear-gradient(
-180deg,
-rgba(255,255,255,.03),
-rgba(255,255,255,.015));
+    padding:28px 30px;
 
-border:1px solid rgba(255,255,255,.05);
+    margin:34px 0;
 
-border-radius:var(--radius-xl);
+    border-radius:22px;
 
-padding:28px 32px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.02),
+            rgba(255,255,255,.01)
+        );
 
-margin:36px 0;
+    border:1px solid rgba(255,255,255,.055);
 
-box-shadow:var(--shadow-md);
-
-}
-
-.card h3{
-
-margin-top:0;
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.02);
 
 }
 
-/* ---------- Badges ---------- */
-
-.badge{
-
-display:inline-flex;
-
-align-items:center;
-
-padding:6px 14px;
-
-border-radius:999px;
-
-font-size:13px;
-
-font-weight:700;
-
-letter-spacing:.03em;
-
-}
-
-.badge.success{
-
-background:rgba(34,197,94,.12);
-
-color:#6EE7B7;
-
-}
-
-.badge.info{
-
-background:rgba(79,124,255,.15);
-
-color:#B8C8FF;
-
-}
-
-.badge.warning{
-
-background:rgba(245,158,11,.12);
-
-color:#FFD166;
-
-}
-
-.badge.danger{
-
-background:rgba(239,68,68,.12);
-
-color:#FCA5A5;
-
-}
-
-
-
-/* ---------- Table ---------- */
+/* ==========================================================
+   TABLES
+========================================================== */
 
 table{
 
-width:100%;
+    width:100%;
 
-border-collapse:collapse;
+    margin:36px 0;
 
-margin:36px 0;
+    border-collapse:separate;
 
-overflow:hidden;
+    border-spacing:0;
 
-border-radius:20px;
+    background:#17181C;
 
-background:var(--surface);
+    border:1px solid rgba(255,255,255,.055);
+
+    border-radius:22px;
+
+    overflow:hidden;
 
 }
 
 thead{
 
-background:#2B2B30;
+    background:#1D1E22;
 
 }
 
 th{
 
-padding:20px;
+    padding:18px 22px;
 
-text-align:left;
+    color:#A8AFBB;
 
-color:#F5F5F0;
+    font-size:12px;
 
-font-size:15px;
+    font-weight:700;
 
-font-weight:600;
+    letter-spacing:.14em;
+
+    text-transform:uppercase;
 
 }
 
 td{
 
-padding:18px 20px;
+    padding:22px;
 
-color:var(--text-secondary);
+    color:#E5E7EB;
 
-border-top:1px solid rgba(255,255,255,.05);
-
-}
-
-tbody tr{
-
-transition:.25s;
+    border-top:1px solid rgba(255,255,255,.04);
 
 }
 
 tbody tr:hover{
 
-background:var(--surface-hover);
+    background:rgba(255,255,255,.02);
 
 }
 
-/* ---------- Code ---------- */
+/* ==========================================================
+   INLINE CODE
+========================================================== */
 
-pre{
+code:not(pre code){
 
-background:#202024;
+    background:rgba(255,255,255,.05);
 
-border:1px solid rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.05);
 
-padding:22px;
+    padding:2px 7px;
 
-border-radius:20px;
+    border-radius:8px;
 
-overflow:auto;
+    font-family:"JetBrains Mono",monospace;
 
-margin:28px 0;
-
-}
-
-code{
-
-font-family:"JetBrains Mono",monospace;
-
-color:#E4E4E7;
-
-font-size:15px;
+    font-size:.9em;
 
 }
 
-/* ---------- Blockquote ---------- */
+/* ==========================================================
+   CODE BLOCKS
+========================================================== */
+
+.codeblock{
+
+    margin:34px 0;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:#16171B;
+
+    border:1px solid rgba(255,255,255,.055);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.02),
+        0 12px 30px rgba(0,0,0,.22);
+
+}
+
+.codeblock-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 18px;
+
+    background:#1B1C20;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+}
+
+.codeblock-language{
+
+    color:#8F96A3;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.22em;
+
+    text-transform:uppercase;
+
+}
+
+.copy-button{
+
+    border:none;
+
+    background:none;
+
+    color:#9DA5B4;
+
+    padding:6px 12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.copy-button:hover{
+
+    background:rgba(255,255,255,.06);
+
+    color:#FFF;
+
+}
+
+.codeblock pre{
+
+    margin:0;
+
+    padding:22px 24px;
+
+    overflow-x:auto;
+
+    background:#101114;
+
+}
+
+.codeblock pre code{
+
+    background:none;
+
+    color:#ECEDEF;
+
+    font-family:"JetBrains Mono",monospace;
+
+    font-size:15px;
+
+    line-height:1.9;
+
+    white-space:pre;
+
+}
+
+.codeblock pre::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.codeblock pre::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:999px;
+
+}
+
+/* ==========================================================
+   BLOCKQUOTE
+========================================================== */
 
 blockquote{
 
-margin:28px 0;
+    margin:30px 0;
 
-padding:18px 24px;
+    padding:20px 24px;
 
-border-left:4px solid var(--accent);
+    border-left:3px solid var(--blue);
 
-background:rgba(255,255,255,.03);
+    background:rgba(255,255,255,.025);
 
-color:var(--text-secondary);
+    border-radius:14px;
 
-border-radius:12px;
-
-}
-
-/* ---------- Checklist ---------- */
-
-input[type=checkbox]{
-
-accent-color:var(--accent);
-
-width:18px;
-
-height:18px;
-
-margin-right:12px;
+    color:#CDD2DA;
 
 }
 
-/* ---------- Footer ---------- */
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.06em;
+
+    text-transform:uppercase;
+
+}
+
+.badge.success{
+
+    background:rgba(34,197,94,.12);
+
+    color:#7BF2B0;
+
+}
+
+.badge.warning{
+
+    background:rgba(245,158,11,.12);
+
+    color:#FFD27A;
+
+}
+
+.badge.danger{
+
+    background:rgba(239,68,68,.12);
+
+    color:#FF9B9B;
+
+}
+
+.badge.info{
+
+    background:rgba(79,124,255,.14);
+
+    color:#B9CBFF;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
 
 .footer{
 
-margin-top:80px;
+    margin-top:100px;
 
-padding-top:28px;
+    padding-top:28px;
 
-border-top:1px solid var(--border-soft);
+    border-top:1px solid rgba(255,255,255,.05);
 
-font-size:14px;
+    color:#8F96A3;
 
-color:var(--text-muted);
+    font-size:14px;
 
 }
 
-/* ---------- Scrollbar ---------- */
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
 
 ::-webkit-scrollbar{
-width:10px;
+
+    width:10px;
+
 }
 
 ::-webkit-scrollbar-track{
-background:#1A1A1D;
+
+    background:#18181B;
+
 }
 
 ::-webkit-scrollbar-thumb{
-background:#4B5563;
-border-radius:20px;
+
+    background:#454851;
+
+    border-radius:999px;
+
 }
 
-::-webkit-scrollbar-thumb:hover{
-background:#6B7280;
-}
-
-/* ---------- Selection ---------- */
+/* ==========================================================
+   SELECTION
+========================================================== */
 
 ::selection{
 
-background:rgba(79,124,255,.35);
+    background:rgba(79,124,255,.30);
 
-color:white;
+    color:#FFF;
 
 }
 
-/* ---------- Mobile ---------- */
+/* ==========================================================
+   MOBILE
+========================================================== */
 
 @media(max-width:900px){
 
 .page{
-padding:36px 24px 100px;
+
+    padding:34px 22px 90px;
+
 }
 
 .hero{
-padding:24px;
-border-radius:24px;
+
+    padding:38px 28px;
+
 }
 
 .hero h1{
-font-size:40px;
+
+    font-size:48px;
+
 }
 
-h1{
-font-size:40px;
+.hero p{
+
+    font-size:18px;
+
+}
+
+.metadata-card{
+
+    grid-template-columns:1fr;
+
 }
 
 h2{
-font-size:32px;
-}
 
-h3{
-font-size:24px;
+    font-size:34px;
+
 }
 
 table{
-display:block;
-overflow-x:auto;
-}
 
-pre{
-padding:18px;
+    display:block;
+
+    overflow-x:auto;
+
 }
 
 }
