@@ -1,10 +1,15 @@
+# ==========================================================
+# DOCS_OS Sidebar Builder v2.2
+# Restores Original Sidebar + Future TOC Support
+# ==========================================================
+
 from pathlib import Path
 import json
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = ROOT.parent / "00_PROJECT_OS"
 
-PROJECT_ROOT = ROOT / "00_PROJECT_OS"
-
+# Fixed department list (always visible)
 DEPARTMENTS = [
     "00_PROJECT_OS",
     "01_COMPANY",
@@ -24,75 +29,123 @@ DEPARTMENTS = [
 ]
 
 
-def load_department_documents(department_path: Path):
-    docs = []
+# ==========================================================
+# Load Existing Projects
+# ==========================================================
 
-    if not department_path.exists():
-        return docs
+def load_projects():
 
-    for folder in sorted(department_path.glob("PROJECT_*")):
-        version = folder / "version.json"
+    projects = []
 
-        if version.exists():
-            data = json.loads(version.read_text(encoding="utf-8"))
+    for folder in sorted(PROJECT_ROOT.glob("PROJECT_*")):
 
-            docs.append(
-                {
-                    "id": data["document_id"],
-                    "title": data["title"],
-                    "folder": folder.name,
-                    "status": data["status"],
-                }
-            )
+        version_file = folder / "version.json"
 
-    return docs
+        if not version_file.exists():
+            continue
+
+        try:
+            data = json.loads(version_file.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+
+        projects.append(
+            {
+                "id": data.get("document_id", folder.name),
+                "title": data.get("title", folder.name),
+                "department": data.get("department", "GENERAL"),
+            }
+        )
+
+    return projects
 
 
-def build_sidebar(current_doc=""):
+# ==========================================================
+# LEFT SIDEBAR
+# ==========================================================
+
+def build_sidebar(current_document):
+
+    projects = load_projects()
+
     html = """
-<div class="sidebar">
+<aside class="sidebar">
 
 <div class="sidebar-top">
 
 <div class="brand">
-<img src="../../assets/icons/logo.svg"/>
+<img src="../assets/logo.svg" alt="Logo">
 <span>Supply Chain Radar</span>
 </div>
 
 <div class="search-box">
-<input placeholder="Search Docs..." id="searchInput"/>
+<input placeholder="Search Docs..." disabled>
 </div>
 
 </div>
-
-<div class="sidebar-nav">
 """
 
+    # Always show every department
     for department in DEPARTMENTS:
 
-        html += f'<div class="department">{department.replace("_"," ")}</div>'
+        html += f"""
+<div class="department">
+{department.replace("_", " ")}
+</div>
+"""
 
-        docs = load_department_documents(PROJECT_ROOT / department)
+        # Show projects only if they belong to this department
+        for project in projects:
 
-        for doc in docs:
+            if project["department"] != department:
+                continue
 
-            active = "active" if doc["id"] == current_doc else ""
+            active = " active" if project["id"] == current_document else ""
 
             html += f"""
-<a class="doc-link {active}" href="{doc['folder']}.html">
-<div class="doc-title">{doc['title']}</div>
-<span class="status {doc['status'].lower()}">{doc['status']}</span>
+<a href="{project["id"]}.html" class="doc-link{active}">
+    <span class="doc-title">{project["title"]}</span>
 </a>
 """
 
     html += """
-</div>
-
 <div class="sidebar-footer">
 DOCS_OS v1.0
 </div>
 
+</aside>
+"""
+
+    return html
+
+
+# ==========================================================
+# RIGHT PAGE TOC (used later)
+# ==========================================================
+
+def build_page_toc(toc_items):
+
+    if not toc_items:
+        return ""
+
+    html = """
+<aside class="page-toc">
+
+<div class="page-toc-title">
+ON THIS PAGE
 </div>
 """
+
+    for item in toc_items:
+
+        cls = "toc-h2" if item["level"] == 2 else "toc-h3"
+
+        html += f"""
+<a href="#{item["id"]}" class="toc-link {cls}">
+{item["title"]}
+</a>
+"""
+
+    html += "</aside>"
 
     return html
